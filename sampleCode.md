@@ -10,4 +10,3 @@
 const highScores = document.querySelector('#highScores');
 const timer = document.querySelector('#timer');
 const score = document.querySelector('#score');
-const displayQuestion = document.querySelector('#questions');
