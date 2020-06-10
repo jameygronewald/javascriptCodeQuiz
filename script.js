@@ -1,7 +1,8 @@
 // Variables associated with DOM elements
 const startButton = document.querySelector('#start');
 const welcomeElements = document.querySelectorAll('.welcome');
-
+const quizElements = document.querySelectorAll('.quiz');
+console.log(quizElements);
 
 // Array of quiz questions
 let questions = [
@@ -15,13 +16,21 @@ let questions = [
 let score = 0;
 let currentQuestion = 0;
 
-// Event listener that starts quiz by hiding all the .welcome class and showing the .quiz class; also starts the timer and the questionAsk() function
-startButton.addEventListener('click', function(event) {
-    event.preventDefault();
+// Event listener that starts quiz by hiding all the .welcome class and showing the .quiz class; also starts the timer and the askQuestion() function
+startButton.addEventListener('click', function() {
     let i = 0;
     while (i < welcomeElements.length) {
         welcomeElements[i].setAttribute('class', 'hide');
         i++;
-    }
+    };
+    let j = 0;
+    while (j < quizElements.length) {
+        quizElements[j].setAttribute('class', 'show');
+        j++;
+    };
+    // askQuestion();
     // startTimer();
 });
+
+//const askQuestion = function() {
+
