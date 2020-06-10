@@ -8,7 +8,6 @@
     <title>JavaScript Code Quiz</title>
 </head>
 <body>
-    <!-- Div for title elements and instructions -->
     <div>
         <h1 class = "welcome" id = "welcomeHeader">
             Coding Quiz Challenge
@@ -18,16 +17,13 @@
         </div>
         <button class = "welcome" id = "start">Start Quiz!</button>
     </div>
-    <div>
-        <h3 class = "hide timer" id = "timer">Seconds remaining: 60</h3>
-    </div>    
-    <!-- Div for quiz elements like questions and answer buttons and responses; these are hidden until user clicks start button -->
+    
     <div class = 'hide quiz'>
-        <h3 class = 'hide quiz' id = "questions">HELLO WORLD</h3>
-        <button class = 'hide quiz choice' id = 'choiceA'>A) BUTTON</button>
-        <button class = 'hide quiz choice' id = 'choiceB'>B) BUTTON</button>
-        <button class = 'hide quiz choice' id = 'choiceC'>C) BUTTON</button>
-        <button class = 'hide quiz choice' id = 'choiceD'>D) BUTTON</button>
+        <p class = 'hide quiz' id = "questions">HELLO WORLD</p>
+        <button class = 'hide quiz'><span id = 'choiceA'>A) BUTTON</span></button>
+        <button class = 'hide quiz'><span id = 'choiceB'>B) BUTTON</span></button>
+        <button class = 'hide quiz'><span id = 'choiceC'>C) BUTTON</span></button>
+        <button class = 'hide quiz'><span id = 'choiceD'>D) BUTTON</span></button>
         <p class = "hide quiz" id = "response"></p>
     </div>
     <script src = 'script.js'></script>
