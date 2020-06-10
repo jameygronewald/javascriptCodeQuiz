@@ -24,14 +24,15 @@ const startTimer = function() {
     let secondsElapsed = 0;
     timer.setAttribute('class', 'show timer');
     let countdown = setInterval(function() {
-        secondsLeft--
-        let counter = timer.innerText = 'Seconds remaining: ' + secondsLeft;
-        console.log(secondsLeft);
-    }, 
-    1000)
-    if (secondsLeft === 55) {
-        countdown.clearInterval;
-    }
+        if (secondsLeft === 0) {
+        clearInterval(countdown);
+        }
+        else {
+            secondsLeft--
+            let counter = timer.innerText = 'Seconds remaining: ' + secondsLeft;
+            console.log(secondsLeft);
+        } 
+    }, 1000)    
 };
 
 // Event listener that starts quiz by hiding all the .welcome class and showing the .quiz class; also starts the timer and the askQuestion() function
