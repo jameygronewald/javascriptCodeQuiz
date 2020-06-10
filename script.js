@@ -2,6 +2,12 @@
 const startButton = document.querySelector('#start');
 const welcomeElements = document.querySelectorAll('.welcome');
 const quizElements = document.querySelectorAll('.quiz');
+const displayQuestion = document.querySelector('#questions')
+const choiceA = document.querySelector('#choiceA')
+const choiceB = document.querySelector('#choiceB');
+const choiceC = document.querySelector('#choiceC');
+const choiceD = document.querySelector('#choiceD');
+const response = document.querySelector('#response');
 
 // Array of quiz questions
 let questions = [
@@ -31,11 +37,28 @@ startButton.addEventListener('click', function() {
 // Function that displays current question and multiple choice responses
 let currentQuestion = 0;
 const askQuestion = function() {
-    const displayQuestion = document.querySelector('#questions').innerText = questions[currentQuestion].q;
-    const choiceA = document.querySelector('#choiceA').textContent = questions[currentQuestion].o1;
-    const choiceB = document.querySelector('#choiceB').textContent = questions[currentQuestion].o2;
-    const choiceC = document.querySelector('#choiceC').textContent = questions[currentQuestion].o3;
-    const choiceD = document.querySelector('#choiceD').textContent = questions[currentQuestion].o4;
-
-
+    displayQuestion.innerText = questions[currentQuestion].q;
+    choiceA.textContent = questions[currentQuestion].o1;
+    choiceB.textContent = questions[currentQuestion].o2;
+    choiceC.textContent = questions[currentQuestion].o3;
+    choiceD.textContent = questions[currentQuestion].o4;
 }
+
+/* const checkAnswer = function() {
+    if ()
+} */
+
+choiceA.addEventListener('click', function() {
+    console.log('hi');
+});
+choiceB.addEventListener('click', function() {
+    console.log('hi');
+});
+choiceC.addEventListener('click', function() {
+    console.log('hi');
+});
+choiceD.addEventListener('click', function() {
+    console.log('hi');
+});
+
+
