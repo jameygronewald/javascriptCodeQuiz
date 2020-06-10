@@ -4,10 +4,18 @@
 }
 
 body {
-    background-color: darkslategrey;
+    background-color: #f4f4f4;
 }
 
-h1 {
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#welcomeHeader {
     color: red;
     text-align: center;
     background-color: #222;
@@ -15,4 +23,17 @@ h1 {
     padding: 1em;
     border-top: solid 5px darkseagreen;
     border-bottom: solid 5px darkseagreen;
+    margin-bottom: 10px;
+}
+
+#welcomeIntro {
+    text-align: center;
+    font-size: 30px;
+    margin: 20px 200px;
+}
+
+#start {
+    font-size: 30px;
+    padding: 5px;
+    
 }
