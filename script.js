@@ -2,7 +2,6 @@
 const startButton = document.querySelector('#start');
 const welcomeElements = document.querySelectorAll('.welcome');
 const quizElements = document.querySelectorAll('.quiz');
-console.log(quizElements);
 
 // Array of quiz questions
 let questions = [
@@ -13,9 +12,6 @@ let questions = [
     {q: 'A very useful tool used during development and debugging for printing content to the debugger is:', o1: 'A) JavaScript', o2: 'B) terminal / bash', o3: 'C) for loops', o4: 'D) console.log', a: 'D) console.log'}
 ];
 
-let score = 0;
-let currentQuestion = 0;
-
 // Event listener that starts quiz by hiding all the .welcome class and showing the .quiz class; also starts the timer and the askQuestion() function
 startButton.addEventListener('click', function() {
     let i = 0;
@@ -25,12 +21,21 @@ startButton.addEventListener('click', function() {
     };
     let j = 0;
     while (j < quizElements.length) {
-        quizElements[j].setAttribute('class', 'show');
+        quizElements[j].setAttribute('class', 'show quiz');
         j++;
     };
-    // askQuestion();
+    askQuestion();
     // startTimer();
 });
 
-//const askQuestion = function() {
+// Function that displays current question and multiple choice responses
+let currentQuestion = 0;
+const askQuestion = function() {
+    const displayQuestion = document.querySelector('#questions').innerText = questions[currentQuestion].q;
+    const choiceA = document.querySelector('#choiceA').textContent = questions[currentQuestion].o1;
+    const choiceB = document.querySelector('#choiceB').textContent = questions[currentQuestion].o2;
+    const choiceC = document.querySelector('#choiceC').textContent = questions[currentQuestion].o3;
+    const choiceD = document.querySelector('#choiceD').textContent = questions[currentQuestion].o4;
 
+
+}
