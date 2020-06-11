@@ -50,11 +50,23 @@ const askQuestion = function() {
         choiceB.textContent = questions[currentQuestion].o2;
         choiceC.innerHTML = questions[currentQuestion].o3;
         choiceD.textContent = questions[currentQuestion].o4;
-        console.log(score);
     }
     else{
         endQuiz();
     }
+};
+// Function that considers which button the user has chosen and evaluates whether it matches the correct answer and responds accordingly; also iterates to next question and runs askQuestion function (which updates the DOM)
+function evaluateChoice(choice) {
+    if (choice === questions[currentQuestion].a) {
+        response.textContent = 'CORRECT!';
+        score += 20;
+    }
+    else {
+        response.textContent = 'INCORRECT';
+        secondsLeft -= 10;
+    }
+    currentQuestion++;
+    askQuestion();
 };
 
 const endQuiz = function () {
@@ -73,16 +85,6 @@ const endQuiz = function () {
     };
 };
 
-/* const evaluateChoice = function(choice) {
-    if (choice === questions[currentQuestion].a) {
-        console.log('correct')
-    }
-    else {
-        console.log('incorrect')
-    }
-    currentQuestion++;
-    askQuestion();
-}; */
 
 //EVENT LISTENERS
 // Event listener that starts quiz by hiding all the .welcome class and showing the .quiz class; also starts the timer and the askQuestion() function
@@ -101,60 +103,22 @@ startButton.addEventListener('click', function() {
     startTimer();
 });
 
-// Event listeners for each button that evaluate whether the answer to the chosen button matches the answer of the question in the array whose index matches the currentQuestion value, and then iterates through the question array and runs the askQuestion function to 
-// choiceA.addEventListener('click', evaluateChoice(questions[currentQuestion].o1));
+// Event listeners for each button that evaluate whether the answer to the chosen button matches the answer of the question in the array whose index matches the currentQuestion value, and then iterates through the question array and runs the askQuestion function to display next question
 
 choiceA.addEventListener('click', function() {
-    if (questions[currentQuestion].o1 === questions[currentQuestion].a) {
-        response.textContent = 'CORRECT!';
-        score += 20;
-    }
-    else {
-        response.textContent = 'INCORRECT';
-        secondsLeft -= 10;
-    }
-    currentQuestion++;
-    askQuestion();
+    evaluateChoice(questions[currentQuestion].o1)
 });
 choiceB.addEventListener('click', function() {
-    if (questions[currentQuestion].o2 === questions[currentQuestion].a) {
-        response.textContent = 'CORRECT!';
-        score += 20;
-    }
-    else {
-        response.textContent = 'INCORRECT';
-        secondsLeft -= 10;
-    }
-    currentQuestion++;
-    askQuestion();
+    evaluateChoice(questions[currentQuestion].o2)
 });
 choiceC.addEventListener('click', function() {
-    if (questions[currentQuestion].o3 === questions[currentQuestion].a) {
-        response.textContent = 'CORRECT!';
-        score += 20;
-    }
-    else {
-        response.textContent = 'INCORRECT';
-        secondsLeft -= 10;
-    }
-    currentQuestion++;
-    askQuestion();
+    evaluateChoice(questions[currentQuestion].o3)
 });
 choiceD.addEventListener('click', function() {
-    if (questions[currentQuestion].o4 === questions[currentQuestion].a) {
-        response.textContent = 'CORRECT!';
-        score += 20;
-    }
-    else {
-        response.textContent = 'INCORRECT';
-        secondsLeft -= 10;
-    }
-    currentQuestion++;
-    askQuestion();
+    evaluateChoice(questions[currentQuestion].o4)
 });
 
 submit.addEventListener('click', function(event) {
     event.preventDefault();
-
 
 });
