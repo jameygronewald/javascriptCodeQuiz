@@ -25,11 +25,20 @@
     <div class = 'hide quiz'>
         <h3 class = 'hide quiz' id = "scoreboard"></h3>
         <h3 class = 'hide quiz' id = "questions"></h3>
-        <button class = 'hide quiz choice' id = 'choiceA'>A)</button>
-        <button class = 'hide quiz choice' id = 'choiceB'>B)</button>
-        <button class = 'hide quiz choice' id = 'choiceC'>C)</button>
-        <button class = 'hide quiz choice' id = 'choiceD'>D)</button>
+        <button class = 'hide quiz choice' id = 'choiceA'></button>
+        <button class = 'hide quiz choice' id = 'choiceB'></button>
+        <button class = 'hide quiz choice' id = 'choiceC'></button>
+        <button class = 'hide quiz choice' id = 'choiceD'></button>
         <p class = "hide quiz" id = "response"></p>
+    </div>
+    <div class = 'quizEnd hide'>
+        <h3 class = 'quizEnd hide'>All done!</h3>
+        <h5 class = 'quizEnd hide' id = "yourScore"></h5>
+        <form class = 'quizEnd hide'>
+            <label>Enter Initials: </label>
+            <input type = "text">
+            <input id = "submitScore" type = "submit" value = "SUBMIT">
+        </form>
     </div>
     <script src = 'script.js'></script>
 </body>

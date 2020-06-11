@@ -10,8 +10,11 @@ const choiceB = document.querySelector('#choiceB');
 const choiceC = document.querySelector('#choiceC');
 const choiceD = document.querySelector('#choiceD');
 const response = document.querySelector('#response');
+const endElements = document.querySelectorAll('.quizEnd');
+const submit = document.querySelector('#submitScore');
 let currentQuestion = 0;
 let score = 0;
+let secondsLeft = 60;
 
 // Array of quiz questions
 let questions = [
@@ -23,11 +26,13 @@ let questions = [
 ];
 // FUNCTIONS
 const startTimer = function() {   
-    let secondsLeft = 60;
     timer.setAttribute('class', 'show timer');
     let countdown = setInterval(function() {
         if (secondsLeft === 0) {
         clearInterval(countdown);
+        }
+        else if (currentQuestion > 4) {
+            clearInterval(countdown);
         }
         else {
             secondsLeft--
@@ -53,7 +58,19 @@ const askQuestion = function() {
 };
 
 const endQuiz = function () {
-    score += secondsLeft;
+    let finalScore = score + secondsLeft;
+    let yourScore = document.querySelector('#yourScore').textContent = 'YOUR SCORE: ' + finalScore;
+    timer.setAttribute('class', 'hide');
+    let i = 0;
+    while (i < quizElements.length) {
+        quizElements[i].setAttribute('class', 'hide');
+        i++;
+    }
+    let j = 0;
+    while (j < endElements.length) {
+        endElements[j].setAttribute('class', 'quizEnd show');
+        j++;
+    };
 };
 
 /* const evaluateChoice = function(choice) {
@@ -93,41 +110,51 @@ choiceA.addEventListener('click', function() {
         score += 20;
     }
     else {
-        response.textContent = 'INCORRECT'
+        response.textContent = 'INCORRECT';
+        secondsLeft -= 10;
     }
     currentQuestion++;
     askQuestion();
 });
 choiceB.addEventListener('click', function() {
     if (questions[currentQuestion].o2 === questions[currentQuestion].a) {
-        response.textContent = 'CORRECT!'
+        response.textContent = 'CORRECT!';
         score += 20;
     }
     else {
-        response.textContent = 'INCORRECT'
+        response.textContent = 'INCORRECT';
+        secondsLeft -= 10;
     }
     currentQuestion++;
     askQuestion();
 });
 choiceC.addEventListener('click', function() {
     if (questions[currentQuestion].o3 === questions[currentQuestion].a) {
-        response.textContent = 'CORRECT!'
+        response.textContent = 'CORRECT!';
         score += 20;
     }
     else {
-        response.textContent = 'INCORRECT'
+        response.textContent = 'INCORRECT';
+        secondsLeft -= 10;
     }
     currentQuestion++;
     askQuestion();
 });
 choiceD.addEventListener('click', function() {
     if (questions[currentQuestion].o4 === questions[currentQuestion].a) {
-        response.textContent = 'CORRECT!'
+        response.textContent = 'CORRECT!';
         score += 20;
     }
     else {
-        response.textContent = 'INCORRECT'
+        response.textContent = 'INCORRECT';
+        secondsLeft -= 10;
     }
     currentQuestion++;
     askQuestion();
+});
+
+submit.addEventListener('click', function(event) {
+    event.preventDefault();
+
+
 });
