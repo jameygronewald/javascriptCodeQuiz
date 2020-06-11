@@ -69,33 +69,49 @@ console.log(questions[0].a);
 choiceA.addEventListener('click', function() {
     if (questions[currentQuestion].o1 === questions[currentQuestion].a) {
         console.log('correct')
+        currentQuestion++;
+        askQuestion();
     }
     else {
         console.log('incorrect')
+        currentQuestion++;
+        askQuestion();
     }
 });
 choiceB.addEventListener('click', function() {
     if (questions[currentQuestion].o2 === questions[currentQuestion].a) {
         console.log('correct')
+        currentQuestion++;
+        askQuestion();
     }
     else {
         console.log('incorrect')
+        currentQuestion++;
+        askQuestion();
     }
 });
 choiceC.addEventListener('click', function() {
     if (questions[currentQuestion].o3 === questions[currentQuestion].a) {
         console.log('correct')
+        currentQuestion++;
+        askQuestion();
     }
     else {
         console.log('incorrect')
+        currentQuestion++;
+        askQuestion();
     }
 });
 choiceD.addEventListener('click', function() {
     if (questions[currentQuestion].o4 === questions[currentQuestion].a) {
         console.log('correct')
+        currentQuestion++;
+        askQuestion();
     }
     else {
         console.log('incorrect')
+        currentQuestion++;
+        askQuestion();
     }
 });
 
