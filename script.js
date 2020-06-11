@@ -15,6 +15,8 @@ const submit = document.querySelector('#submitScore');
 let currentQuestion = 0;
 let score = 0;
 let secondsLeft = 60;
+let finalScore;
+let initials;
 
 // Array of quiz questions
 let questions = [
@@ -68,9 +70,9 @@ function evaluateChoice(choice) {
     currentQuestion++;
     askQuestion();
 };
-
+// Function that ends the quiz when the questions are finished; presents finalScore to user and provides an input to log score and submit it; also hides timer
 const endQuiz = function () {
-    let finalScore = score + secondsLeft;
+    finalScore = score + secondsLeft;
     let yourScore = document.querySelector('#yourScore').textContent = 'YOUR SCORE: ' + finalScore;
     timer.setAttribute('class', 'hide');
     let i = 0;
@@ -84,7 +86,6 @@ const endQuiz = function () {
         j++;
     };
 };
-
 
 //EVENT LISTENERS
 // Event listener that starts quiz by hiding all the .welcome class and showing the .quiz class; also starts the timer and the askQuestion() function
@@ -104,7 +105,6 @@ startButton.addEventListener('click', function() {
 });
 
 // Event listeners for each button that evaluate whether the answer to the chosen button matches the answer of the question in the array whose index matches the currentQuestion value, and then iterates through the question array and runs the askQuestion function to display next question
-
 choiceA.addEventListener('click', function() {
     evaluateChoice(questions[currentQuestion].o1)
 });
@@ -117,8 +117,9 @@ choiceC.addEventListener('click', function() {
 choiceD.addEventListener('click', function() {
     evaluateChoice(questions[currentQuestion].o4)
 });
-
+// Event listener for submit button to log initials and score to local storage 
 submit.addEventListener('click', function(event) {
     event.preventDefault();
-
+    initials = document.querySelector('#initials').value;
+    let storedHighScore = localStorage.setItem(initials, finalScore);
 });
