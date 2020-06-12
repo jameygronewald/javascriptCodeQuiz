@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    color: rgb(0, 54, 77)
 }
 
 body {
@@ -13,10 +14,6 @@ body {
 
 .hide {
     display: none;
-}
-
-.show {
-    display: block;
 }
 
 #timerRow {
@@ -36,13 +33,13 @@ body {
 }
 
 #welcomeHeader {
-    color: red;
+    color: #f4f4f4;
     text-align: center;
-    background-color: #222;
+    background-color: purple;
     font-size: 2.5em;
     padding: 1em;
-    border-top: solid 5px darkseagreen;
-    border-bottom: solid 5px darkseagreen;
+    border-top: solid 5px #222;
+    border-bottom: solid 5px #222;
     margin-bottom: 10px;
 }
 
@@ -85,7 +82,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 input {
@@ -96,6 +93,11 @@ input {
     font-size: 25px;
     padding: 3px;
     margin: 5px;
+}
+
+#scoreRow {
+    display: flex;
+    align-content: center;
 }
 
 @media (max-width: 1110px) {
