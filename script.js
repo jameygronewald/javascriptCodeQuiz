@@ -1,5 +1,5 @@
 // Variables associated with DOM elements
-const startButton = document.querySelector('#start');
+const startButton = document.querySelector('#startButton');
 const welcomeElements = document.querySelectorAll('.welcome');
 const highScores = document.querySelector('#highScores');
 const timer = document.querySelector('#timer');
@@ -64,10 +64,12 @@ const askQuestion = function() {
 function evaluateChoice(choice) {
     if (choice === questions[currentQuestion].a) {
         response.textContent = 'CORRECT!';
+        response.style.color = 'green';
         score += 20;
     }
     else {
         response.textContent = 'INCORRECT';
+        response.style.color = 'red';
         secondsLeft -= 10;
     }
     currentQuestion++;

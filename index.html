@@ -11,12 +11,12 @@
     <!-- Contains all the rows that toggle between being displayed or hidden and allows for setting margins on them -->
     <div class = "container">
         <!-- Row for Timer and High Scores -->
-        <div class = "timerRow">
+        <div id = "timerRow">
             <h3 class = "hide" id = "highScores">Click Here for High Scores</h3>
             <h3 class = "hide" id = "timer">Seconds Remaining: 60</h3>
         </div>    
         <!-- Row for title elements and instructions -->
-        <div class = "welcome welcomeRow">
+        <div id = "welcomeRow" class = "welcome">
             <div class = "welcome headerDiv">
                 <h1 id = "welcomeHeader">
                     Coding Quiz Challenge
@@ -25,10 +25,10 @@
             <div class = "welcome">
                 <p id = "welcomeIntro">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 15 seconds!</p>
             </div>
-            <button class = "welcome" id = "start">Start Quiz!</button>
+            <button class = "welcome" id = "startButton">Start Quiz!</button>
         </div>
         <!-- Div for quiz elements like questions and answer buttons and responses; these are hidden until user clicks start button -->
-        <div class = 'quizRow'>
+        <div id = 'quizRow'>
             <h3 class = 'hide quiz' id = "scoreboard"></h3>
             <h3 class = 'hide quiz' id = "questions"></h3>
             <button class = 'hide quiz' id = 'choiceA'></button>
@@ -38,7 +38,7 @@
             <hr class = "hide quiz">
             <p class = "hide quiz" id = "response"></p>
         </div>
-        <div class = 'quizEnd hide'>
+        <div class = "quizEnd" id = "quizEndRow">
             <h3 class = 'quizEnd hide'>All done!</h3>
             <h5 class = 'quizEnd hide' id = "yourScore"></h5>
             <form class = 'quizEnd hide'>
