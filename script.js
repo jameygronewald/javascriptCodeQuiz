@@ -1,6 +1,7 @@
 // Variables associated with DOM elements
 const startButton = document.querySelector('#start');
 const welcomeElements = document.querySelectorAll('.welcome');
+const highScores = document.querySelector('#highScores');
 const timer = document.querySelector('#timer');
 const quizElements = document.querySelectorAll('.quiz');
 const scoreDisplay = document.querySelector('#scoreboard');
@@ -28,17 +29,19 @@ let questions = [
 ];
 // FUNCTIONS
 const startTimer = function() {   
-    timer.setAttribute('class', 'show timer');
+    highScores.setAttribute('class', '');
+    timer.setAttribute('class', '');
     let countdown = setInterval(function() {
         if (secondsLeft === 0) {
         clearInterval(countdown);
+        endQuiz();
         }
         else if (currentQuestion > 4) {
             clearInterval(countdown);
         }
         else {
             secondsLeft--
-            timer.innerText = 'Seconds remaining: ' + secondsLeft;
+            timer.innerText = 'Seconds Remaining: ' + secondsLeft;
         } 
     }, 1000)    
 };
@@ -47,10 +50,10 @@ const startTimer = function() {
 const askQuestion = function() {
     scoreDisplay.innerText = 'Score: ' + score;
     if (currentQuestion < 5) {
-        displayQuestion.innerText = questions[currentQuestion].q;
+        displayQuestion.textContent = questions[currentQuestion].q;
         choiceA.textContent = questions[currentQuestion].o1;
         choiceB.textContent = questions[currentQuestion].o2;
-        choiceC.innerHTML = questions[currentQuestion].o3;
+        choiceC.textContent = questions[currentQuestion].o3;
         choiceD.textContent = questions[currentQuestion].o4;
     }
     else{

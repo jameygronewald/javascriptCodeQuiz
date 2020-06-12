@@ -8,37 +8,45 @@
     <title>JavaScript Code Quiz</title>
 </head>
 <body>
-    <!-- Div for title elements and instructions -->
-    <div>
-        <h1 class = "welcome" id = "welcomeHeader">
-            Coding Quiz Challenge
-        </h1>
-        <div>
-            <p class = "welcome" id = "welcomeIntro">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 15 seconds!</p>
+    <!-- Contains all the rows that toggle between being displayed or hidden and allows for setting margins on them -->
+    <div class = "container">
+        <!-- Row for Timer and High Scores -->
+        <div class = "timerRow">
+            <h3 class = "hide" id = "highScores">Click Here for High Scores</h3>
+            <h3 class = "hide" id = "timer">Seconds Remaining: 60</h3>
+        </div>    
+        <!-- Row for title elements and instructions -->
+        <div class = "welcome welcomeRow">
+            <div class = "welcome headerDiv">
+                <h1 id = "welcomeHeader">
+                    Coding Quiz Challenge
+                </h1>
+            </div>
+            <div class = "welcome">
+                <p id = "welcomeIntro">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 15 seconds!</p>
+            </div>
+            <button class = "welcome" id = "start">Start Quiz!</button>
         </div>
-        <button class = "welcome" id = "start">Start Quiz!</button>
-    </div>
-    <div>
-        <h3 class = "hide timer" id = "timer">Seconds remaining: 60</h3>
-    </div>    
-    <!-- Div for quiz elements like questions and answer buttons and responses; these are hidden until user clicks start button -->
-    <div class = 'hide quiz'>
-        <h3 class = 'hide quiz' id = "scoreboard"></h3>
-        <h3 class = 'hide quiz' id = "questions"></h3>
-        <button class = 'hide quiz choice' id = 'choiceA'></button>
-        <button class = 'hide quiz choice' id = 'choiceB'></button>
-        <button class = 'hide quiz choice' id = 'choiceC'></button>
-        <button class = 'hide quiz choice' id = 'choiceD'></button>
-        <p class = "hide quiz" id = "response"></p>
-    </div>
-    <div class = 'quizEnd hide'>
-        <h3 class = 'quizEnd hide'>All done!</h3>
-        <h5 class = 'quizEnd hide' id = "yourScore"></h5>
-        <form class = 'quizEnd hide'>
-            <label>Enter Initials: </label>
-            <input id = "initials" name = "initials" type = "text">
-            <input id = "submitScore" type = "submit" value = "SUBMIT">
-        </form>
+        <!-- Div for quiz elements like questions and answer buttons and responses; these are hidden until user clicks start button -->
+        <div class = 'quizRow'>
+            <h3 class = 'hide quiz' id = "scoreboard"></h3>
+            <h3 class = 'hide quiz' id = "questions"></h3>
+            <button class = 'hide quiz' id = 'choiceA'></button>
+            <button class = 'hide quiz' id = 'choiceB'></button>
+            <button class = 'hide quiz' id = 'choiceC'></button>
+            <button class = 'hide quiz' id = 'choiceD'></button>
+            <hr class = "hide quiz">
+            <p class = "hide quiz" id = "response"></p>
+        </div>
+        <div class = 'quizEnd hide'>
+            <h3 class = 'quizEnd hide'>All done!</h3>
+            <h5 class = 'quizEnd hide' id = "yourScore"></h5>
+            <form class = 'quizEnd hide'>
+                <label>Enter Initials: </label>
+                <input id = "initials" name = "initials" type = "text">
+                <input id = "submitScore" type = "submit" value = "SUBMIT">
+            </form>
+        </div>
     </div>
     <script src = 'script.js'></script>
 </body>
