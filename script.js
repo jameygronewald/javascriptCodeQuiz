@@ -38,18 +38,22 @@ let questions = [
 const savedScores = [];
 // FUNCTIONS
 // Function that reassigns classes to variables that are associated with chunks of HTML elements; the classes change to set elements being displayed in the DOM at that time to 'display: none' and remove the .hide class from elements that will then update the DOM with desired nodes; reused throughout the program
-const nextScreen = function(hideHTML, displayHTML, className) {
+const hideFromDom = function(elements) {
     let i = 0;
-    while (i < hideHTML.length) {
-        hideHTML[i].setAttribute('class', 'hide');
+    while (i < elements.length) {
+        elements[i].setAttribute('class', 'hide');
         i++;
-    }
-    let j = 0;
-    while (j < displayHTML.length) {
-        displayHTML[j].setAttribute('class', className);
-        j++;
     };
 };
+
+const showInDom = function(elements, className) {
+    let i = 0;
+    while (i < elements.length) {
+        elements[i].setAttribute('class', className);
+        i++;
+    };
+};
+
 
 const startTimer = function() {   
     timer.setAttribute('class', '');
@@ -101,13 +105,15 @@ const endQuiz = function () {
     finalScore = score + secondsLeft;
     yourScore.textContent = 'YOUR SCORE: ' + finalScore;
     timer.setAttribute('class', 'hide');
-    nextScreen(quizElements, endElements, 'quizEnd')
+    hideFromDom(quizElements);
+    showInDom(endElements, 'quizEnd');
 };
 
 //EVENT LISTENERS
 // Event listener that starts quiz by hiding all the .welcome class and removing .hide from all elements with the .quiz class; also starts the timer and the askQuestion() function
 startButton.addEventListener('click', function() {
-    nextScreen(welcomeElements, quizElements, 'quiz')
+    hideFromDom(welcomeElements);
+    showInDom(quizElements, 'quiz');
     askQuestion();
     startTimer();
 });
@@ -128,7 +134,8 @@ choiceD.addEventListener('click', function() {
 // Event listener for submit button to log playerName and score to local storage 
 submit.addEventListener('click', function(event) {
     event.preventDefault();
-    nextScreen(endElements, scoreElements, 'scoreScreen');
+    hideFromDom(endElements);
+    showInDom(scoreElements, 'scoreScreen');
     highScoresButton.setAttribute('class', 'hide');
     const playerName = document.querySelector('#playerName');
     let currentName = playerName.value;
@@ -138,20 +145,25 @@ submit.addEventListener('click', function(event) {
     const locallyStoredScores = JSON.parse(localStorage.getItem('scores'));
     console.log(savedScores);
     console.log(locallyStoredScores);
-    /* let allScores = function() {
+    let displayScores = function() {
         let i = 0;
-        while (i < savedScores.length) {
-            let newScore = document.createElement('h4');
-            newScore.textContent = 'Player Name: ' + savedScores[i].currentName + ' ///// Score: ' + savedScores[i].finalScore;
-            highScoreDisplay.append(newScore);
+        while (i < locallyStoredScores.length) {
+            let allScores = document.createElement('h3');
+            let newScore = 'Player Name: ' + locallyStoredScores[i].currentName + ' /// Score: ' + locallyStoredScores[i].finalScore;
+            highScoreDisplay.append(allScores);
+            allScores.textContent = newScore;
             i++;
-        }
+            console.log(newScore);
+        };
     };
-    allScores(); */
+    displayScores();
 });
 
 back.addEventListener('click', function() {
-    nextScreen(scoreElements, welcomeElements, 'welcome');
+    hideFromDom(quizElements);
+    hideFromDom(endElements);
+    hideFromDom(scoreElements);
+    showInDom(welcomeElements, 'welcome');
     highScoresButton.setAttribute('class', '');
     container.setAttribute('class', '');
     secondsLeft = 60;
@@ -160,7 +172,12 @@ back.addEventListener('click', function() {
     finalScore;
     playerName.value = '';
     response.textContent = '';
+    newScore = '';
 });
+
+clear.addEventListener('click', function() {
+
+})
 
 showHighScores.addEventListener('click', function() {
     document.querySelector('#container').setAttribute('class', 'hide');
