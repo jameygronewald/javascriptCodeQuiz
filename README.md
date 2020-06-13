@@ -5,7 +5,7 @@ Timed, multiple-choice, JavaScript coding quiz for the developing developer!
 
 ## Description
 
-A JavaScript coding quiz made using JavaScript. Runs in the browser and uses DOM manipulation and data preservation to keep track of player scores.
+A JavaScript coding quiz featuring dynamically modified HTML. Runs in the browser and uses DOM manipulation and data preservation to keep track of player scores.
 
 ---
 
@@ -14,6 +14,7 @@ A JavaScript coding quiz made using JavaScript. Runs in the browser and uses DOM
 * [Usage](#Usage)
 * [Images](#Images)
 * [Credits](#Credits)
+* [Collaborators](#Collaborators)
 * [License](#License)
 
 ---
@@ -27,8 +28,21 @@ A JavaScript coding quiz made using JavaScript. Runs in the browser and uses DOM
 
 ## Usage
 
-
 * Visit the deployed app: [JavaScript Code Quiz](https://jameygronewald.github.io/javascriptCodeQuiz/)
+    1. Click the Start button to begin quiz.
+    2. Select the button that represents the multiple-choice response that best answers the question. If correct, receive 20 points; if incorrect, timer drops by 10 seconds.
+    3. After final question, see final score displayed on the screen (base score + time remaining). Enter your name or initials and click submit to see your new score displayed among the high scores.
+    4. Hit clear to clear out the high scores, or back to return to the welcome screen and play again!
+
+* Visit Github to track changes that were made or to clone the repo: [Github Repo](https://github.com/jameygronewald/javascriptCodeQuiz).
+---
+
+## Images
+
+![Welcome Screen](assets/demoImages/welcomeScreen.png)
+![Sample Question Screen](assets/demoImages/questionScreen.png)
+![End of Quiz](assets/demoImages/endOfQuizScreen.png)
+![High Scores](assets/demoImages/highScoresScreen.png)
 
 ---
 
