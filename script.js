@@ -34,8 +34,7 @@ let questions = [
     {q: 'A very useful tool used during development and debugging for printing content to the debugger is:', o1: 'A) JavaScript', o2: 'B) terminal / bash', o3: 'C) for loops', o4: 'D) console.log', a: 'D) console.log'}
 ];
 
-// Empty array to push score data into
-const savedScores = [];
+
 // FUNCTIONS
 // Function that reassigns classes to variables that are associated with chunks of HTML elements; the classes change to set elements being displayed in the DOM at that time to 'display: none' and remove the .hide class from elements that will then update the DOM with desired nodes; reused throughout the program
 const hideFromDom = function(elements) {
@@ -140,6 +139,7 @@ submit.addEventListener('click', function(event) {
     const playerName = document.querySelector('#playerName');
     let currentName = playerName.value;
     let savedScoreObject = {currentName, finalScore};
+    let savedScores = [];
     savedScores.push(savedScoreObject);
     localStorage.setItem('scores', JSON.stringify(savedScores));
     const locallyStoredScores = JSON.parse(localStorage.getItem('scores'));
@@ -176,7 +176,7 @@ back.addEventListener('click', function() {
 });
 
 clear.addEventListener('click', function() {
-
+    localStorage.clear();
 })
 
 showHighScores.addEventListener('click', function() {
