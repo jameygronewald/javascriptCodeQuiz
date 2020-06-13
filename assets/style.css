@@ -31,7 +31,7 @@ body {
 }
 
 .headerDiv {
-    margin: auto;
+    width: 100%;
 }
 
 #welcomeHeader {
@@ -112,6 +112,14 @@ input {
     #welcomeIntro {
         font-size: 20px;
     }
+    
+    input {
+        font-size: 15px;
+    }
+
+    #submitScore {
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 540px) {
@@ -123,9 +131,15 @@ input {
         margin: 0px;
     }
 
+    .headerDiv {
+        width: 100%;
+        margin: 0px;
+    }
+
     #welcomeHeader {
         width: 100%;
         font-size: 1.5em;
+        margin: 0px;
     }
 
     #welcomeIntro {
@@ -137,7 +151,19 @@ input {
         padding: 7px;
     }
 
+    #highScoresButton {
+        font-size: .9em;
+    }
+
+    #timer {
+        font-size: .9em;
+    }
+
     input {
+        font-size: 15px;
+    }
+
+    #submitScore {
         font-size: 15px;
     }
 }
