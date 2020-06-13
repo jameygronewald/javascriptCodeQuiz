@@ -9,6 +9,7 @@ body {
 }
 
 #container {
+    max-width: 100%;
     margin: 0px 30px;
 }
 
@@ -23,6 +24,7 @@ body {
 }
 
 #welcomeRow {
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +38,7 @@ body {
     color: #f4f4f4;
     text-align: center;
     background-color: purple;
-    font-size: 2.5em;
+    font-size: 2.3em;
     padding: 1em;
     border-top: solid 5px #222;
     border-bottom: solid 5px #222;
@@ -46,7 +48,7 @@ body {
 #welcomeIntro {
     text-align: center;
     font-size: 30px;
-    margin: 20px 200px;
+    margin: 20px;
 }
 
 #startButton {
@@ -117,12 +119,25 @@ input {
         margin: 0px;
     }
 
+    #welcomeRow {
+        margin: 0px;
+    }
+
     #welcomeHeader {
-        width: 540px;
+        width: 100%;
+        font-size: 1.5em;
     }
 
     #welcomeIntro {
         font-size: 16px;
     }
 
+    #startButton {
+        font-size: 1.5em;
+        padding: 7px;
+    }
+
+    input {
+        font-size: 15px;
+    }
 }
