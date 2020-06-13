@@ -5,24 +5,25 @@ const endElements = document.querySelectorAll('.quizEnd');
 const scoreElements = document.querySelectorAll('.scoreScreen');
 const container = document.querySelector('#container');
 const startButton = document.querySelector('#startButton');
-const highScores = document.querySelector('#highScores');
-const showScores = document.querySelector('#showScores');
+const highScoresButton = document.querySelector('#highScoresButton');
+const showHighScores = document.querySelector('#showHighScores');
 const timer = document.querySelector('#timer');
-const scoreDisplay = document.querySelector('#scoreboard');
+const scoreboard = document.querySelector('#scoreboard');
 const displayQuestion = document.querySelector('#questions');
 const choiceA = document.querySelector('#choiceA')
 const choiceB = document.querySelector('#choiceB');
 const choiceC = document.querySelector('#choiceC');
 const choiceD = document.querySelector('#choiceD');
 const response = document.querySelector('#response');
+const yourScore = document.querySelector('#yourScore');
 const submit = document.querySelector('#submitScore');
+const highScoreDisplay = document.querySelector('#highScoreDisplay');
 const back = document.querySelector('#backButton');
 const clear = document.querySelector('#clearButton');
 let currentQuestion = 0;
 let score = 0;
 let secondsLeft = 60;
 let finalScore;
-let initials;
 
 // Array of quiz questions
 let questions = [
@@ -32,6 +33,9 @@ let questions = [
     {q: 'String values must be enclosed within ______ when being assigned to variables.', o1: 'A) commas', o2: 'B) curly brackets', o3: 'C) quotes', o4: 'D) parentheses', a: 'C) quotes'},
     {q: 'A very useful tool used during development and debugging for printing content to the debugger is:', o1: 'A) JavaScript', o2: 'B) terminal / bash', o3: 'C) for loops', o4: 'D) console.log', a: 'D) console.log'}
 ];
+
+// Empty array to push score data into
+const savedScores = [];
 // FUNCTIONS
 // Function that reassigns classes to variables that are associated with chunks of HTML elements; the classes change to set elements being displayed in the DOM at that time to 'display: none' and remove the .hide class from elements that will then update the DOM with desired nodes; reused throughout the program
 const nextScreen = function(hideHTML, displayHTML, className) {
@@ -65,14 +69,13 @@ const startTimer = function() {
 };
 // Function that displays current question and multiple choice responses and ends quiz once questions array is through
 const askQuestion = function() {
-    scoreDisplay.innerText = 'Score: ' + score;
+    scoreboard.innerText = 'Score: ' + score;
     if (currentQuestion < 5) {
         displayQuestion.textContent = questions[currentQuestion].q;
         choiceA.textContent = questions[currentQuestion].o1;
         choiceB.textContent = questions[currentQuestion].o2;
         choiceC.textContent = questions[currentQuestion].o3;
         choiceD.textContent = questions[currentQuestion].o4;
-        response.textContent = '';
     }
     else{
         endQuiz();
@@ -96,7 +99,7 @@ function evaluateChoice(choice) {
 // Function that ends the quiz when the questions are finished; presents finalScore to user and provides an input to log score and submit it; also hides timer
 const endQuiz = function () {
     finalScore = score + secondsLeft;
-    let yourScore = document.querySelector('#yourScore').textContent = 'YOUR SCORE: ' + finalScore;
+    yourScore.textContent = 'YOUR SCORE: ' + finalScore;
     timer.setAttribute('class', 'hide');
     nextScreen(quizElements, endElements, 'quizEnd')
 };
@@ -122,28 +125,44 @@ choiceC.addEventListener('click', function() {
 choiceD.addEventListener('click', function() {
     evaluateChoice(questions[currentQuestion].o4)
 });
-// Event listener for submit button to log initials and score to local storage 
+// Event listener for submit button to log playerName and score to local storage 
 submit.addEventListener('click', function(event) {
     event.preventDefault();
     nextScreen(endElements, scoreElements, 'scoreScreen');
-    highScores.setAttribute('class', 'hide');
-    
-    /* initials = document.querySelector('#initials').value;
-    let storedHighScore = localStorage.setItem(initials, finalScore); */
+    highScoresButton.setAttribute('class', 'hide');
+    const playerName = document.querySelector('#playerName');
+    let currentName = playerName.value;
+    let savedScoreObject = {currentName, finalScore};
+    savedScores.push(savedScoreObject);
+    localStorage.setItem('scores', JSON.stringify(savedScores));
+    const locallyStoredScores = JSON.parse(localStorage.getItem('scores'));
+    console.log(savedScores);
+    console.log(locallyStoredScores);
+    /* let allScores = function() {
+        let i = 0;
+        while (i < savedScores.length) {
+            let newScore = document.createElement('h4');
+            newScore.textContent = 'Player Name: ' + savedScores[i].currentName + ' ///// Score: ' + savedScores[i].finalScore;
+            highScoreDisplay.append(newScore);
+            i++;
+        }
+    };
+    allScores(); */
 });
 
 back.addEventListener('click', function() {
     nextScreen(scoreElements, welcomeElements, 'welcome');
-    highScores.setAttribute('class', '');
+    highScoresButton.setAttribute('class', '');
     container.setAttribute('class', '');
     secondsLeft = 60;
     currentQuestion = 0;
     score = 0;
     finalScore;
-    initials;
+    playerName.value = '';
+    response.textContent = '';
 });
 
-showScores.addEventListener('click', function() {
+showHighScores.addEventListener('click', function() {
     document.querySelector('#container').setAttribute('class', 'hide');
     let i = 0;
     while (i < scoreElements.length) {

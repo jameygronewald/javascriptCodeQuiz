@@ -12,7 +12,7 @@
     <div id = "container">
         <!-- Row for Timer and High Scores -->
         <div id = "timerRow">
-            <h3 id = "highScores"><span id = "showScores">Click Here for High Scores</span></h3>
+            <h3 id = "highScoresButton"><span id = "showHighScores">Click Here for High Scores</span></h3>
             <h3 class = "hide" id = "timer">Seconds Remaining: 60</h3>
         </div>    
         <!-- Row for title elements and instructions -->
@@ -42,14 +42,15 @@
             <h2 class = "quizEnd hide">All done!</h2>
             <h5 class = "quizEnd hide" id = "yourScore"></h5>
             <form class = "quizEnd hide">
-                <label>Enter Initials: </label>
-                <input id = "initials" name = "initials" type = "text">
+                <label>Enter Name: </label>
+                <input id = "playerName" placeholder = "Your Name Here" name = "playerName" type = "text">
                 <input id = "submitScore" type = "submit" value = "SUBMIT">
             </form>
         </div>
     </div>
     <div id = "scoreScreen" id = "scoreRow">
         <h2 class = "hide scoreScreen">High Scores</h2>
+        <div id = "highScoreDisplay"></div>
         <button class = "hide scoreScreen" id = "backButton">Go Back</button>
         <button class = "hide scoreScreen" id = "clearButton">Clear Scores</button>
         <p class = "hide scoreScreen" id = "response"></p>
