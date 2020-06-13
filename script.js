@@ -145,17 +145,18 @@ submit.addEventListener('click', function(event) {
     const locallyStoredScores = JSON.parse(localStorage.getItem('scores'));
     console.log(savedScores);
     console.log(locallyStoredScores);
-    let allScores = function() {
+    let displayScores = function() {
         let i = 0;
-        while (i < savedScores.length) {
-            let newScore = document.createElement('h4');
-            newScore.textContent = 'Player Name: ' + savedScores[i].currentName + ' ///// Score: ' + savedScores[i].finalScore;
-            highScoreDisplay.append(newScore);
-        
+        while (i < locallyStoredScores.length) {
+            let allScores = document.createElement('h3');
+            let newScore = 'Player Name: ' + locallyStoredScores[i].currentName + ' /// Score: ' + locallyStoredScores[i].finalScore;
+            highScoreDisplay.append(allScores);
+            allScores.textContent = newScore;
             i++;
-        }
+            console.log(newScore);
+        };
     };
-    allScores();
+    displayScores();
 });
 
 back.addEventListener('click', function() {
@@ -171,7 +172,12 @@ back.addEventListener('click', function() {
     finalScore;
     playerName.value = '';
     response.textContent = '';
+    newScore = '';
 });
+
+clear.addEventListener('click', function() {
+
+})
 
 showHighScores.addEventListener('click', function() {
     document.querySelector('#container').setAttribute('class', 'hide');
