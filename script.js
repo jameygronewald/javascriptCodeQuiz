@@ -1,9 +1,13 @@
 // Variables associated with DOM elements
-const startButton = document.querySelector('#startButton');
 const welcomeElements = document.querySelectorAll('.welcome');
-const highScores = document.querySelector('#highScores');
-const timer = document.querySelector('#timer');
 const quizElements = document.querySelectorAll('.quiz');
+const endElements = document.querySelectorAll('.quizEnd');
+const scoreElements = document.querySelectorAll('.scoreScreen');
+const container = document.querySelector('#container');
+const startButton = document.querySelector('#startButton');
+const highScores = document.querySelector('#highScores');
+const showScores = document.querySelector('#showScores');
+const timer = document.querySelector('#timer');
 const scoreDisplay = document.querySelector('#scoreboard');
 const displayQuestion = document.querySelector('#questions');
 const choiceA = document.querySelector('#choiceA')
@@ -11,8 +15,9 @@ const choiceB = document.querySelector('#choiceB');
 const choiceC = document.querySelector('#choiceC');
 const choiceD = document.querySelector('#choiceD');
 const response = document.querySelector('#response');
-const endElements = document.querySelectorAll('.quizEnd');
 const submit = document.querySelector('#submitScore');
+const back = document.querySelector('#backButton');
+const clear = document.querySelector('#clearButton');
 let currentQuestion = 0;
 let score = 0;
 let secondsLeft = 60;
@@ -28,8 +33,21 @@ let questions = [
     {q: 'A very useful tool used during development and debugging for printing content to the debugger is:', o1: 'A) JavaScript', o2: 'B) terminal / bash', o3: 'C) for loops', o4: 'D) console.log', a: 'D) console.log'}
 ];
 // FUNCTIONS
+// Function that reassigns classes to variables that are associated with chunks of HTML elements; the classes change to set elements being displayed in the DOM at that time to 'display: none' and remove the .hide class from elements that will then update the DOM with desired nodes; reused throughout the program
+const nextScreen = function(hideHTML, displayHTML, className) {
+    let i = 0;
+    while (i < hideHTML.length) {
+        hideHTML[i].setAttribute('class', 'hide');
+        i++;
+    }
+    let j = 0;
+    while (j < displayHTML.length) {
+        displayHTML[j].setAttribute('class', className);
+        j++;
+    };
+};
+
 const startTimer = function() {   
-    highScores.setAttribute('class', '');
     timer.setAttribute('class', '');
     let countdown = setInterval(function() {
         if (secondsLeft === 0) {
@@ -45,7 +63,6 @@ const startTimer = function() {
         } 
     }, 1000)    
 };
-
 // Function that displays current question and multiple choice responses and ends quiz once questions array is through
 const askQuestion = function() {
     scoreDisplay.innerText = 'Score: ' + score;
@@ -55,6 +72,7 @@ const askQuestion = function() {
         choiceB.textContent = questions[currentQuestion].o2;
         choiceC.textContent = questions[currentQuestion].o3;
         choiceD.textContent = questions[currentQuestion].o4;
+        response.textContent = '';
     }
     else{
         endQuiz();
@@ -80,31 +98,13 @@ const endQuiz = function () {
     finalScore = score + secondsLeft;
     let yourScore = document.querySelector('#yourScore').textContent = 'YOUR SCORE: ' + finalScore;
     timer.setAttribute('class', 'hide');
-    let i = 0;
-    while (i < quizElements.length) {
-        quizElements[i].setAttribute('class', 'hide');
-        i++;
-    }
-    let j = 0;
-    while (j < endElements.length) {
-        endElements[j].setAttribute('class', 'quizEnd show');
-        j++;
-    };
+    nextScreen(quizElements, endElements, 'quizEnd')
 };
 
 //EVENT LISTENERS
-// Event listener that starts quiz by hiding all the .welcome class and showing the .quiz class; also starts the timer and the askQuestion() function
+// Event listener that starts quiz by hiding all the .welcome class and removing .hide from all elements with the .quiz class; also starts the timer and the askQuestion() function
 startButton.addEventListener('click', function() {
-    let i = 0;
-    while (i < welcomeElements.length) {
-        welcomeElements[i].setAttribute('class', 'hide');
-        i++;
-    };
-    let j = 0;
-    while (j < quizElements.length) {
-        quizElements[j].setAttribute('class', 'show quiz');
-        j++;
-    };
+    nextScreen(welcomeElements, quizElements, 'quiz')
     askQuestion();
     startTimer();
 });
@@ -125,6 +125,29 @@ choiceD.addEventListener('click', function() {
 // Event listener for submit button to log initials and score to local storage 
 submit.addEventListener('click', function(event) {
     event.preventDefault();
-    initials = document.querySelector('#initials').value;
-    let storedHighScore = localStorage.setItem(initials, finalScore);
+    nextScreen(endElements, scoreElements, 'scoreScreen');
+    highScores.setAttribute('class', 'hide');
+    
+    /* initials = document.querySelector('#initials').value;
+    let storedHighScore = localStorage.setItem(initials, finalScore); */
+});
+
+back.addEventListener('click', function() {
+    nextScreen(scoreElements, welcomeElements, 'welcome');
+    highScores.setAttribute('class', '');
+    container.setAttribute('class', '');
+    secondsLeft = 60;
+    currentQuestion = 0;
+    score = 0;
+    finalScore;
+    initials;
+});
+
+showScores.addEventListener('click', function() {
+    document.querySelector('#container').setAttribute('class', 'hide');
+    let i = 0;
+    while (i < scoreElements.length) {
+        scoreElements[i].setAttribute('class', 'scoreScreen');
+        i++;
+    };
 });
