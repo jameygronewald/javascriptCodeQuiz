@@ -5,6 +5,8 @@ Timed, multiple-choice, JavaScript coding quiz for the developing developer!
 
 ## Description
 
+A JavaScript coding quiz made using JavaScript. Runs in the browser and uses DOM manipulation and data preservation to keep track of player scores.
+
 ---
 
 ## Table of Contents
@@ -18,17 +20,27 @@ Timed, multiple-choice, JavaScript coding quiz for the developing developer!
 
 ## Installation
 
+1. Clone the Github Repository [here](https://github.com/jameygronewald/javascriptCodeQuiz).
+2. Open index.html in browser.
+
 ---
 
 ## Usage
 
----
 
-## Images
+* Visit the deployed app: [JavaScript Code Quiz](https://jameygronewald.github.io/javascriptCodeQuiz/)
 
 ---
 
 ## Credits
+
+Thanks to GT Coding Bootcamp for providing a concept template for the quiz.
+
+---
+
+## Collaborators
+
+I, Jamey Gronewald, was the sole collaborator on this project.
 
 ---
 
