@@ -9,10 +9,10 @@
 </head>
 <body>
     <!-- Contains all the rows that toggle between being displayed or hidden and allows for setting margins on them -->
-    <div class = "container">
+    <div id = "container">
         <!-- Row for Timer and High Scores -->
         <div id = "timerRow">
-            <h3 class = "hide" id = "highScores">Click Here for High Scores</h3>
+            <h3 id = "highScores"><span id = "showScores">Click Here for High Scores</span></h3>
             <h3 class = "hide" id = "timer">Seconds Remaining: 60</h3>
         </div>    
         <!-- Row for title elements and instructions -->
@@ -47,12 +47,12 @@
                 <input id = "submitScore" type = "submit" value = "SUBMIT">
             </form>
         </div>
-        <div id = "scoreScreen" id = "scoreRow">
-            <h2 class = "hide scoreScreen">High Scores</h2>
-            <button class = "hide scoreScreen" id = "backButton">Go Back</button>
-            <button class = "hide scoreScreen" id = "clearButton">Clear Scores</button>
-            <p class = "hide scoreScreen" id = "response"></p>
-        </div>
+    </div>
+    <div id = "scoreScreen" id = "scoreRow">
+        <h2 class = "hide scoreScreen">High Scores</h2>
+        <button class = "hide scoreScreen" id = "backButton">Go Back</button>
+        <button class = "hide scoreScreen" id = "clearButton">Clear Scores</button>
+        <p class = "hide scoreScreen" id = "response"></p>
     </div>
     <script src = "script.js"></script>
 </body>

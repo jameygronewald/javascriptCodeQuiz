@@ -1,9 +1,13 @@
 // Variables associated with DOM elements
-const startButton = document.querySelector('#startButton');
 const welcomeElements = document.querySelectorAll('.welcome');
-const highScores = document.querySelector('#highScores');
-const timer = document.querySelector('#timer');
 const quizElements = document.querySelectorAll('.quiz');
+const endElements = document.querySelectorAll('.quizEnd');
+const scoreElements = document.querySelectorAll('.scoreScreen');
+const container = document.querySelector('#container');
+const startButton = document.querySelector('#startButton');
+const highScores = document.querySelector('#highScores');
+const showScores = document.querySelector('#showScores');
+const timer = document.querySelector('#timer');
 const scoreDisplay = document.querySelector('#scoreboard');
 const displayQuestion = document.querySelector('#questions');
 const choiceA = document.querySelector('#choiceA')
@@ -11,9 +15,7 @@ const choiceB = document.querySelector('#choiceB');
 const choiceC = document.querySelector('#choiceC');
 const choiceD = document.querySelector('#choiceD');
 const response = document.querySelector('#response');
-const endElements = document.querySelectorAll('.quizEnd');
 const submit = document.querySelector('#submitScore');
-const scoreElements = document.querySelectorAll('.scoreScreen');
 const back = document.querySelector('#backButton');
 const clear = document.querySelector('#clearButton');
 let currentQuestion = 0;
@@ -31,21 +33,21 @@ let questions = [
     {q: 'A very useful tool used during development and debugging for printing content to the debugger is:', o1: 'A) JavaScript', o2: 'B) terminal / bash', o3: 'C) for loops', o4: 'D) console.log', a: 'D) console.log'}
 ];
 // FUNCTIONS
-const nextScreen = function(stage1, stage2, className) {
+// Function that reassigns classes to variables that are associated with chunks of HTML elements; the classes change to set elements being displayed in the DOM at that time to 'display: none' and remove the .hide class from elements that will then update the DOM with desired nodes; reused throughout the program
+const nextScreen = function(hideHTML, displayHTML, className) {
     let i = 0;
-    while (i < stage1.length) {
-        stage1[i].setAttribute('class', 'hide');
+    while (i < hideHTML.length) {
+        hideHTML[i].setAttribute('class', 'hide');
         i++;
     }
     let j = 0;
-    while (j < stage2.length) {
-        stage2[j].setAttribute('class', className);
+    while (j < displayHTML.length) {
+        displayHTML[j].setAttribute('class', className);
         j++;
     };
 };
 
 const startTimer = function() {   
-    highScores.setAttribute('class', '');
     timer.setAttribute('class', '');
     let countdown = setInterval(function() {
         if (secondsLeft === 0) {
@@ -61,7 +63,6 @@ const startTimer = function() {
         } 
     }, 1000)    
 };
-
 // Function that displays current question and multiple choice responses and ends quiz once questions array is through
 const askQuestion = function() {
     scoreDisplay.innerText = 'Score: ' + score;
@@ -71,6 +72,7 @@ const askQuestion = function() {
         choiceB.textContent = questions[currentQuestion].o2;
         choiceC.textContent = questions[currentQuestion].o3;
         choiceD.textContent = questions[currentQuestion].o4;
+        response.textContent = '';
     }
     else{
         endQuiz();
@@ -124,8 +126,28 @@ choiceD.addEventListener('click', function() {
 submit.addEventListener('click', function(event) {
     event.preventDefault();
     nextScreen(endElements, scoreElements, 'scoreScreen');
+    highScores.setAttribute('class', 'hide');
     
     /* initials = document.querySelector('#initials').value;
     let storedHighScore = localStorage.setItem(initials, finalScore); */
 });
 
+back.addEventListener('click', function() {
+    nextScreen(scoreElements, welcomeElements, 'welcome');
+    highScores.setAttribute('class', '');
+    container.setAttribute('class', '');
+    secondsLeft = 60;
+    currentQuestion = 0;
+    score = 0;
+    finalScore;
+    initials;
+});
+
+showScores.addEventListener('click', function() {
+    document.querySelector('#container').setAttribute('class', 'hide');
+    let i = 0;
+    while (i < scoreElements.length) {
+        scoreElements[i].setAttribute('class', 'scoreScreen');
+        i++;
+    };
+});
