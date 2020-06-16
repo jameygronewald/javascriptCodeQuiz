@@ -34,6 +34,7 @@ let questions = [
     {q: 'A very useful tool used during development and debugging for printing content to the debugger is:', o1: 'A) JavaScript', o2: 'B) terminal / bash', o3: 'C) for loops', o4: 'D) console.log', a: 'D) console.log'}
 ];
 
+let savedScores = [];
 
 // FUNCTIONS
 // Function that reassigns classes to variables that are associated with chunks of HTML elements; the classes change to set elements being displayed in the DOM at that time to 'display: none' and remove the .hide class from elements that will then update the DOM with desired nodes; reused throughout the program
@@ -52,7 +53,6 @@ const showInDom = function(elements, className) {
         i++;
     };
 };
-
 
 const startTimer = function() {   
     timer.setAttribute('class', '');
@@ -73,7 +73,7 @@ const startTimer = function() {
 // Function that displays current question and multiple choice responses and ends quiz once questions array is through
 const askQuestion = function() {
     scoreboard.innerText = 'Score: ' + score;
-    if (currentQuestion < 5) {
+    if (currentQuestion < questions.length) {
         displayQuestion.textContent = questions[currentQuestion].q;
         choiceA.textContent = questions[currentQuestion].o1;
         choiceB.textContent = questions[currentQuestion].o2;
@@ -108,6 +108,20 @@ const endQuiz = function () {
     showInDom(endElements, 'quizEnd');
 };
 
+let displayScores = function() {
+    let i = 0;
+    while (i < savedScores.length) {
+        const locallyStoredScores = localStorage.getItem('score' + i);
+        console.log(locallyStoredScores);
+        let allScores = document.createElement('h3');
+        let newScore = 'Player Name: ' + JSON.parse(locallyStoredScores).currentName + ' /// Score: ' + JSON.parse(locallyStoredScores).finalScore;
+        allScores.textContent = newScore;
+        highScoreDisplay.append(allScores);
+        console.log(newScore);
+        i++;
+    };
+};
+
 //EVENT LISTENERS
 // Event listener that starts quiz by hiding all the .welcome class and removing .hide from all elements with the .quiz class; also starts the timer and the askQuestion() function
 startButton.addEventListener('click', function() {
@@ -139,22 +153,11 @@ submit.addEventListener('click', function(event) {
     const playerName = document.querySelector('#playerName');
     let currentName = playerName.value;
     let savedScoreObject = {currentName, finalScore};
-    let savedScores = [];
     savedScores.push(savedScoreObject);
-    localStorage.setItem('scores', JSON.stringify(savedScores));
-    const locallyStoredScores = JSON.parse(localStorage.getItem('scores'));
-    console.log(savedScores);
-    console.log(locallyStoredScores);
-    let displayScores = function() {
-        let i = 0;
-        while (i < locallyStoredScores.length) {
-            let allScores = document.createElement('h3');
-            let newScore = 'Player Name: ' + locallyStoredScores[i].currentName + ' /// Score: ' + locallyStoredScores[i].finalScore;
-            highScoreDisplay.append(allScores);
-            allScores.textContent = newScore;
-            i++;
-            console.log(newScore);
-        };
+    let i = 0;
+    while (i < savedScores.length) {
+        localStorage.setItem('score' + i, JSON.stringify(savedScores[i]));
+        i++;
     };
     displayScores();
 });
@@ -177,7 +180,7 @@ back.addEventListener('click', function() {
 
 clear.addEventListener('click', function() {
     localStorage.clear();
-})
+});
 
 showHighScores.addEventListener('click', function() {
     document.querySelector('#container').setAttribute('class', 'hide');
@@ -186,4 +189,5 @@ showHighScores.addEventListener('click', function() {
         scoreElements[i].setAttribute('class', 'scoreScreen');
         i++;
     };
+    displayScores();
 });
